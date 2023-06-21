@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+@layer base {
+    html {
+        @apply lg:text-base md:text-slm text-sm min-h-screen sm:scroll-smooth bg-light-gray text-grayish-blue
+    }
+
+}
+
+.icon-span-red:active > svg > path {
+    @apply fill-soft-red/60
+}
+.icon-span-blue:active > svg > path{
+    @apply fill-moderate-blue/60
+}
+
+.plus > path,
+.minus > path{
+    @apply fill-grayish-blue/50
+}
