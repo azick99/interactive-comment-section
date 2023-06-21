@@ -6,13 +6,12 @@ function App() {
   const [isSoundOn, setIsSoundOn] = useState(true)
   return (
     <main>
-
       <button
         type="button"
         onClick={() => setIsSoundOn(!isSoundOn)}
-        className="bg-black text-white "
+        className=" bg-moderate-blue active:bg-moderate-blue/60 text-white uppercase rounded-md absolute sm:m-2 ml-[20rem] z-10  p-2 "
       >
-        {isSoundOn ? 'on' : 'off'}
+        {isSoundOn ? 'sound off' : 'sound on'}
       </button>
       <CommentsList isSoundOn={isSoundOn} />
       <AddNewCommentForm isSoundOn={isSoundOn} />

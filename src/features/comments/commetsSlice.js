@@ -6,11 +6,9 @@ import { findCommentById, findReplies } from '../../utils/heplerFunctions'
 
 const { comments } = data
 
-// Check if comments data exists in localStorage
-// const storedComments = localStorage.getItem('comments')
-// const initialState = storedComments ? JSON.parse(storedComments) : [...comments]
-
-const initialState = [...comments]
+//Check if comments data exists in localStorage
+const storedComments = localStorage.getItem('comments')
+const initialState = storedComments ? JSON.parse(storedComments) : [...comments]
 
 const commentsSlice = createSlice({
   name: 'comments',
@@ -164,14 +162,12 @@ export const {
   commentRemoved,
 } = commentsSlice.actions
 
-// export default function persistedCommentsReducer(state, action) {
-//   // Call the original comments reducer
-//   const newState = commentsSlice.reducer(state, action)
+export default function persistedCommentsReducer(state, action) {
+  // Call the original comments reducer
+  const newState = commentsSlice.reducer(state, action)
 
-//   // Store the updated comments data in localStorage
-//   localStorage.setItem('comments', JSON.stringify(newState))
+  // Store the updated comments data in localStorage
+  localStorage.setItem('comments', JSON.stringify(newState))
 
-//   return newState
-// }
-
-export default commentsSlice.reducer
+  return newState
+}

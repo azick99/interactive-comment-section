@@ -15,7 +15,7 @@ const DeleteModal = ({ isSoundOn, id, setIsModalOpen }) => {
   }
 
   return (
-    <div className="fixed top-0 left-0 flex items-center justify-center bg-black/50 w-full h-full  overflow-y-auto">
+    <div className="fixed top-0 left-0 flex items-center justify-center bg-black/30 w-full h-full  overflow-y-auto">
       <div className="flex sm:w-[30vw] w-full gap-y-4 p-6 bg-white flex-col rounded-lg sm:mx-0 mx-14">
         <h1 className="font-bold text-dark-blue lg:text-2xl md:text-xl text-lg ">
           Delete comment

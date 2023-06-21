@@ -1,12 +1,10 @@
 import { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { commentUpdated } from './commetsSlice'
-import useInputFocus from '../../utils/useInputFocus'
 
 const EditCommentForm = ({
   commentId,
   setIsUpdating,
-  isUpdating,
   commentContent,
   replyingTo,
 }) => {
@@ -15,7 +13,6 @@ const EditCommentForm = ({
   )
   const inputRef = useRef(null)
 
-  useInputFocus(isUpdating, inputRef)
 
   const dispatch = useDispatch()
 
@@ -42,7 +39,7 @@ const EditCommentForm = ({
         value={content}
         ref={inputRef}
         onChange={onTextChanged}
-        className="border"
+        className="border w-full resize-none rounded-md p-3 pl-5"
       ></textarea>
       <button
         type="button"

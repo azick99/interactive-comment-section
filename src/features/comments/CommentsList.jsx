@@ -21,9 +21,9 @@ import DeleteModal from '../../components/DeleteModal'
 import { ReactComponent as Plus } from '../../assets/images/icon-plus.svg'
 import { ReactComponent as Minus } from '../../assets/images/icon-minus.svg'
 
-
 const CommentsList = ({ isSoundOn }) => {
   const comments = useSelector((state) => state.comments)
+
   const [isUpdating, setIsUpdating] = useState('')
   const [isReplying, setIsReplying] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(null)
@@ -51,7 +51,7 @@ const CommentsList = ({ isSoundOn }) => {
   return (
     <section
       id="comment"
-      className="flex flex-col gap-4 sm:w-[60vw] w-full sm:mx-auto m-5 "
+      className="flex flex-col gap-5 sm:w-[60vw] w-full sm:mx-auto m-5 sm:pr-0 pr-4"
     >
       {comments.map((comment) => {
         const { id, content, createdAt, user, score, replies } = comment
@@ -74,20 +74,36 @@ const CommentsList = ({ isSoundOn }) => {
                 setIsModalOpen={setIsModalOpen}
               />
             )}
-            <div className="bg-white flex py-6 px-5 gap-5">
-              <div className="bg-light-grayish flex sm:flex-col flex-row justify-center items-center my-5 py-2 px-3">
-                <Plus onClick={() => onPlusClick(id)} className="plus" />
-                <span>{score}</span>
-                <Minus onClick={() => onMinusClick(id)} className="minus" />
+
+            <div className="bg-white flex sm:flex-row  flex-col-reverse py-6 px-5 gap-5 rounded-md relative">
+              <div className="bg-light-gray rounded-lg flex sm:flex-col justify-between flex-row items-center sm:h-[95px] sm:w-auto w-[8rem] h-auto py-3 px-3 ">
+                <button
+                  onClick={() => onPlusClick(id)}
+                  className="plus"
+                  type="button"
+                >
+                  <Plus />
+                </button>
+                <span className="text-moderate-blue/90 font-bold">{score}</span>
+                <button
+                  onClick={() => onMinusClick(id)}
+                  className="minus h-3"
+                  type="button"
+                >
+                  <Minus />
+                </button>
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-x-5">
+
+              <div className="flex flex-col w-full gap-y-3">
+                <div className="flex items-center gap-x-3">
                   <img
                     src={userImage}
                     alt={user.username}
                     className="w-[35px]"
                   />
-                  <span>{user.username}</span>
+                  <span className="font-bold text-dark-blue">
+                    {user.username}
+                  </span>
                   <CurrentUser
                     isSoundOn={isSoundOn}
                     createdAt={createdAt}
@@ -102,12 +118,11 @@ const CommentsList = ({ isSoundOn }) => {
                 {isUpdating === id ? (
                   <EditCommentForm
                     commentId={id}
-                    isUpdating={isUpdating}
                     setIsUpdating={setIsUpdating}
                     commentContent={content}
                   />
                 ) : (
-                  <div>{content}</div>
+                  <div className="w-[95%]">{content}</div>
                 )}
               </div>
             </div>
@@ -122,11 +137,12 @@ const CommentsList = ({ isSoundOn }) => {
               />
             )}
 
-            {!!replies.length &&
-              replies.map((reply) => (
-                <div key={reply.id} className="pl-20">
+            {!!replies.length && (
+              <div className="sm:pl-10 pl-5 sm:ml-10 flex flex-col gap-5 border-l-2 border-l-grayish-blue/10 border-solid">
+                {replies.map((reply) => (
                   <Replies
                     reply={reply}
+                    key={reply.id}
                     isSoundOn={isSoundOn}
                     setIsUpdating={setIsUpdating}
                     isUpdating={isUpdating}
@@ -137,8 +153,9 @@ const CommentsList = ({ isSoundOn }) => {
                     setIsReplying={setIsReplying}
                     setIsModalOpen={setIsModalOpen}
                   />
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
           </Fragment>
         )
       })}

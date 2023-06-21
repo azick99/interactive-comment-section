@@ -11,13 +11,17 @@
 }
 
 .icon-span-red:active > svg > path {
-    @apply fill-soft-red/60
+    @apply fill-soft-red/60 
 }
 .icon-span-blue:active > svg > path{
-    @apply fill-moderate-blue/60
+    @apply fill-moderate-blue/60 
 }
 
-.plus > path,
-.minus > path{
-    @apply fill-grayish-blue/50
+.plus > svg > path,
+.minus > svg > path{
+    @apply fill-grayish-blue/40 transition
+}
+.plus:hover > svg > path,
+.minus:hover > svg > path{
+    @apply fill-moderate-blue transition
 }
